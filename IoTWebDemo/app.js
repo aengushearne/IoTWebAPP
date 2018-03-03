@@ -35,8 +35,8 @@ app.io.on('connection', function(socket){
 				}, function (error, response, body) {
 	  if (!error && response.statusCode == 200) {
 		 //var info = JSON.parse(body)
-			humidity_data = body.msg.humidity
-		 console.log(body.msg.humidity)
+			humidity_data = response.body.humidity;//body.msg.humidity
+		 //console.log(body.msg.humidity)
 		 socket.emit('humidity_data',humidity_data);
 		 //console.log(info)
 	  }else
@@ -51,9 +51,10 @@ app.io.on('connection', function(socket){
 				rejectUnhauthorized : false 
 				}, function (error, response, body) {
 	  if (!error && response.statusCode == 200) {
+		  console.log('temp response', response.body);
 		 //var info = JSON.parse(body)
-			temperature_data = body.msg.temperature
-		 console.log(body.msg.temperature)
+			temperature_data = response.body.celcius_degree;//body.msg.temperature
+		 //console.log(body.msg.temperature)
 		 socket.emit('temperature_data',temperature_data);
 		 //console.log(info)
 	  }else
@@ -69,8 +70,9 @@ app.io.on('connection', function(socket){
 				}, function (error, response, body) {
 	  if (!error && response.statusCode == 200) {
 		 //var info = JSON.parse(body)
-			moisture_data = body.msg.moisture;
-		 console.log(body.msg.moisture);
+		 console.log('response_data', response.body.moisture)
+			moisture_data = response.body.moisture;//body.msg.moisture;
+		 //console.log(body.msg.moisture);
 		 socket.emit('moisture_data',moisture_data);
 		 //console.log(info)
 	  }else
@@ -86,8 +88,8 @@ app.io.on('connection', function(socket){
 				}, function (error, response, body) {
 	  if (!error && response.statusCode == 200) {
 		 //var info = JSON.parse(body)
-			light_data = body.msg.lux;
-		 console.log(body.msg.lux)
+			light_data = response.body.lux;//body.msg.lux;
+		 //console.log(body.msg.lux)
 		 socket.emit('light_data',light_data);
 		 //console.log(info)
 	  }else
